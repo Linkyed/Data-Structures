@@ -9,8 +9,8 @@ public class List {
 	DataElement lastElement = null;
 	double size = 0;
 	
-	public void addElement(double value) {
-		if (firstElement == null) {
+	public void add(double value) {
+		if (isEmpty()) {
 			DataElement temporary =  new DataElement(value, null, null);
 			firstElement = temporary;
 			lastElement = temporary;			
@@ -22,34 +22,25 @@ public class List {
 		size++;
 	}
 	
-	public double removeElement(DataElement element) throws EmptyListException {
-		if (firstElement != null) {
-			DataElement aux = element;
-			if (element == firstElement) {
-				aux.next.previous = aux.previous;
-				aux.next = null;
-			} else if (element == lastElement) {
-				aux.previous.next = aux.next;
-				aux.previous = null;
-			} else {
-				aux.next.previous = aux.previous;
-				aux.previous.next = aux.next;
-			}
-			size--;
-			return aux.value;
-		} else {
-			throw new EmptyListException();
-		}
-	}
-	
-	public double removeElement(int index) throws IndexOutOfRangeException, DataElementDoesntExistException, EmptyListException {
-		if (firstElement != null) {			
+	public boolean remove(int index) throws IndexOutOfRangeException, DataElementDoesntExistException, EmptyListException {
+		if (!isEmpty()) {			
 			DataElement aux = firstElement;
 			if (index <= size && index >= 0) {
 				for (int i = 0; i < index; i++) {
 					aux = aux.next;
 				}			
-				return removeElement(aux);
+				if (aux == firstElement) {
+					aux.next.previous = aux.previous;
+					aux.next = null;
+				} else if (aux == lastElement) {
+					aux.previous.next = aux.next;
+					aux.previous = null;
+				} else {
+					aux.next.previous = aux.previous;
+					aux.previous.next = aux.next;
+				}
+				size--;
+				return true;
 			}
 		} else {
 			throw new EmptyListException();
@@ -57,27 +48,42 @@ public class List {
 		throw new IndexOutOfRangeException("teste");
 	}
 	
-	public boolean findElement(double value) throws EmptyListException {
-		if (firstElement != null) {
+	public void find(double value) throws EmptyListException {
+		if (!isEmpty()) {
 			DataElement aux = firstElement;
-			if (value == aux.value) {
-				return true;
-			}
-			while(aux.next != null) {
-				if (aux.value == value) {
-					return true;
-				}
+			int index = 0;
+			while(aux.next != null && aux.value != value) {
 				aux = aux.next;
+				index++;
 			}			
-			return false;
+			if (aux.value == value) {
+				System.out.println("The data element " + value + " is on the index " + index);				
+			} else {
+				System.out.println("There is no element with value " + value + " in this list");
+			}
 		}
 		else {
 			throw new EmptyListException();
 		}
 	}
 	
-	public void showList() {
-		if (firstElement != null) {
+	public double get(int index) throws EmptyListException, IndexOutOfRangeException {
+		if (!isEmpty()) {			
+			DataElement aux = firstElement;
+			if (index <= size && index >= 0) {
+				for (int i = 0; i < index; i++) {
+					aux = aux.next;
+				}			
+				return aux.value;
+			}
+		} else {
+			throw new EmptyListException();
+		}
+		throw new IndexOutOfRangeException("teste");
+	}
+	
+	public void printList() {
+		if (!isEmpty()) {
 			DataElement aux = firstElement;
 			while(aux.next != null) {
 				System.out.println(aux.value);
@@ -85,6 +91,13 @@ public class List {
 			}
 			System.out.println(aux.value);			
 		}
+	}
+	
+	public boolean isEmpty() {
+		if (firstElement == null) {
+			return true;
+		}
+		return false;
 	}
 	
 }

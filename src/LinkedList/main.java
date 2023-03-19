@@ -1,47 +1,59 @@
 package LinkedList;
 
-import java.util.Random;
-
+import Errors.DataElementDoesntExistException;
 import Errors.EmptyListException;
+import Errors.IndexOutOfRangeException;
 
 public class main {
 	
-	public static void main(String[] args) {
-		Random random = new Random();
+	public static void main(String[] args) throws EmptyListException, IndexOutOfRangeException, DataElementDoesntExistException {
+
+		//====================Creating a double linked-list====================
 		List list = new List();
 
-		long startTime = System.currentTimeMillis();
-		for (int i = 1; i <= 100000000; i++) {
-			//list.addElement(random.nextInt(100));
-			list.addElement(i);
-		}
-		long endTime = System.currentTimeMillis();
-		long duration = endTime - startTime;
-		System.out.println("It took " + duration/1000.0 + " seconds to add all the numbers on the list!");
-		//list.showList();
-		try {
-			System.out.println("Removed element: " + list.removeElement(1));			
-		} catch (Exception e) {
-			System.out.println("The index is out of range");
-		}
-		//list.showList();
-		try {
-			startTime = System.currentTimeMillis();
-			boolean finded = list.findElement(99999999);
-			endTime = System.currentTimeMillis();
-			duration = endTime - startTime;
-			if (finded == true) {
-				System.out.println("The value is on the list!");
-				System.out.println("It tooked " + duration/1000.0 + " seconds to find the value");
-			} else {
-				System.out.println("The value is not on the list!");
-				System.out.println("It took " + duration/1000.0 + " seconds to go through to all values of the list");
-			}
-		} catch (EmptyListException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//Adding 10 data elements on it
+		for (int i = 1; i <= 10; i++) {
+			list.add(i);
 		}
 		
+		//Printing the list
+		list.printList();
 		
+		//Trying to remove a element by it index
+		System.out.println("Removed element: " + list.remove(3));			
+	
+		//Printing the list
+		list.printList();
+
+		//Trying to find a element with a given value
+		list.find(10);
+		
+		//Trying to get a value by it index and testing it on a operation
+		System.out.println(list.get(7) - list.get(3));
+		
+		
+		//====================Creating a Queue====================
+		Queue queue = new Queue();
+		
+		//Adding data elements in the queue
+		for (int i = 1; i <= 10; i++) {
+			queue.add(i);
+		}
+		
+		//Printing the queue
+		queue.printList();
+		
+		// Trying to get the first value of the queue
+		System.out.println("First value: " + queue.get());
+
+		//Trying to remove a element from the queue
+		System.out.println("First value removed: " + queue.remove());	
+		
+		//Printing the queue
+		queue.printList();
+
+		//Trying to find a element with a given value and it position on the queue
+		queue.find(7);
+
 	}
 }
