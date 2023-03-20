@@ -2,7 +2,24 @@ package LinkedList;
 
 import Errors.EmptyListException;
 
-public class Queue extends List{
+public class Queue{
+	DataElement firstElement = null;
+	DataElement lastElement = null;
+	double size = 0;
+	
+	
+	public void add(double value) {
+		if (isEmpty()) {
+			DataElement temporary =  new DataElement(value, null);
+			firstElement = temporary;
+			lastElement = temporary;			
+		} else {
+			DataElement temporary = new DataElement(value, null);
+			lastElement.next = temporary;
+			lastElement = temporary;
+		}
+		size++;
+	}
 	
 	public boolean remove() {
 		if (isEmpty()) {
@@ -47,6 +64,24 @@ public class Queue extends List{
 		else {
 			throw new EmptyListException();
 		}
+	}
+	
+	public void printQueue() {
+		if (!isEmpty()) {
+			DataElement aux = firstElement;
+			while(aux.next != null) {
+				System.out.print(aux.value + "->");
+				aux = aux.next;
+			}
+			System.out.println(aux.value);			
+		}
+	}
+	
+	public boolean isEmpty() {
+		if (firstElement == null) {
+			return true;
+		}
+		return false;
 	}
 	
 }

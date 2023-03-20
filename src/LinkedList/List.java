@@ -5,17 +5,17 @@ import Errors.EmptyListException;
 import Errors.IndexOutOfRangeException;
 
 public class List {
-	DataElement firstElement = null;
-	DataElement lastElement = null;
-	double size = 0;
+	DoubleLinkedDE firstElement = null;
+	DoubleLinkedDE lastElement = null;
+	int size = 0;
 	
 	public void add(double value) {
 		if (isEmpty()) {
-			DataElement temporary =  new DataElement(value, null, null);
+			DoubleLinkedDE temporary =  new DoubleLinkedDE(value, null, null);
 			firstElement = temporary;
 			lastElement = temporary;			
 		} else {
-			DataElement temporary = new DataElement(value, null, lastElement);
+			DoubleLinkedDE temporary = new DoubleLinkedDE(value, null, lastElement);
 			lastElement.next = temporary;
 			lastElement = temporary;
 		}
@@ -24,16 +24,18 @@ public class List {
 	
 	public boolean remove(int index) throws IndexOutOfRangeException, DataElementDoesntExistException, EmptyListException {
 		if (!isEmpty()) {			
-			DataElement aux = firstElement;
-			if (index <= size && index >= 0) {
+			DoubleLinkedDE aux = firstElement;
+			if (index < size && index >= 0) {
 				for (int i = 0; i < index; i++) {
 					aux = aux.next;
 				}			
 				if (aux == firstElement) {
-					aux.next.previous = aux.previous;
+					firstElement = aux.next;
+					aux.next.previous = null;
 					aux.next = null;
 				} else if (aux == lastElement) {
-					aux.previous.next = aux.next;
+					lastElement = aux.previous;
+					aux.previous.next = null;
 					aux.previous = null;
 				} else {
 					aux.next.previous = aux.previous;
@@ -42,7 +44,7 @@ public class List {
 				size--;
 				return true;
 			}
-		} else {
+		} else { 
 			throw new EmptyListException();
 		}
 		throw new IndexOutOfRangeException("teste");
@@ -50,7 +52,7 @@ public class List {
 	
 	public void find(double value) throws EmptyListException {
 		if (!isEmpty()) {
-			DataElement aux = firstElement;
+			DoubleLinkedDE aux = firstElement;
 			int index = 0;
 			while(aux.next != null && aux.value != value) {
 				aux = aux.next;
@@ -69,7 +71,7 @@ public class List {
 	
 	public double get(int index) throws EmptyListException, IndexOutOfRangeException {
 		if (!isEmpty()) {			
-			DataElement aux = firstElement;
+			DoubleLinkedDE aux = firstElement;
 			if (index <= size && index >= 0) {
 				for (int i = 0; i < index; i++) {
 					aux = aux.next;
@@ -84,13 +86,19 @@ public class List {
 	
 	public void printList() {
 		if (!isEmpty()) {
-			DataElement aux = firstElement;
+			DoubleLinkedDE aux = firstElement;
 			while(aux.next != null) {
-				System.out.println(aux.value);
+				System.out.print(aux.value + "->");
 				aux = aux.next;
 			}
 			System.out.println(aux.value);			
+		} else {
+			System.out.println("\nThis list is empty!\n");
 		}
+	}
+	
+	public int getSize() {
+		return size;
 	}
 	
 	public boolean isEmpty() {

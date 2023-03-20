@@ -11,3 +11,9 @@ For the start of the project i implement the first type of data structure that i
 The list is a object that has the pointer of the first and last data element with it and it also has the size of itself just to faccilitate some verifications.
 
 I tryed to create a big list, but above the 1.000.000 values on it, the java cant handle with the memory cost, then next time i will figure out how i gonna resolve it.
+
+## Day 2
+Addes the queue data structure
+
+Change some things on double linked list: adding the get and isempty method, change the find method
+
