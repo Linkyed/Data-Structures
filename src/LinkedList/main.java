@@ -9,6 +9,7 @@ public class main {
 	public static void main(String[] args) throws EmptyListException, IndexOutOfRangeException, DataElementDoesntExistException {
 
 		//====================Creating a double linked-list====================
+		System.out.println("=================Double Linked List=================");
 		List list = new List();
 
 		//Adding 10 data elements on it
@@ -33,6 +34,7 @@ public class main {
 		
 		
 		//====================Creating a Queue====================
+		System.out.println("=================Queue=================");
 		Queue queue = new Queue();
 		
 		//Adding data elements in the queue
@@ -41,7 +43,7 @@ public class main {
 		}
 		
 		//Printing the queue
-		queue.printList();
+		queue.printQueue();
 		
 		// Trying to get the first value of the queue
 		System.out.println("First value: " + queue.get());
@@ -50,10 +52,33 @@ public class main {
 		System.out.println("First value removed: " + queue.remove());	
 		
 		//Printing the queue
-		queue.printList();
+		queue.printQueue();
 
 		//Trying to find a element with a given value and it position on the queue
 		queue.find(7);
 
+		//====================Creating a Stack====================
+		System.out.println("=================Stack=================");
+		Stack stack = new Stack();
+		
+		for (int i = 1; i <= 10; i++) {
+			stack.add(i);
+		}
+		
+		//Printing the stack
+		stack.printStack();
+		
+		// Trying to get the first value of the stack
+		System.out.println("First value: " + stack.get());
+		
+		//Trying to remove a element from the stack
+		System.out.println("First value removed: " + stack.remove());	
+		
+		//Printing the stack
+		stack.printStack();
+		
+		//Trying to find a element with a given value and it position on the stack
+		stack.find(7);
+		
 	}
 }
