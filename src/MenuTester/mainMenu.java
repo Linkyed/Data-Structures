@@ -1,26 +1,32 @@
 package MenuTester;
 
+import java.util.function.Consumer;
+
 import Errors.DataElementDoesntExistException;
 import Errors.EmptyListException;
 import Errors.IndexOutOfRangeException;
 import LinkedList.List;
 import LinkedList.Queue;
 import LinkedList.Stack;
+import Utility.UsefulFunctions;
 
-public class mainMenu {
+public class mainMenu extends UsefulFunctions{
 	
 	public static void main(String[] args) {
+		
+		
 		int option = -1;
 		List list = new List();
 		Queue queue = new Queue();
 		Stack stack = new Stack();
+		
 		while (option != 4) {
-			System.out.println("[1] Start a List\n[2] Start a Queue\n[3] Start a Stack\n[4] Exit");
+			println.accept("[1] Start a List\n[2] Start a Queue\n[3] Start a Stack\n[4] Exit");
 			option = menuMethods.chooseOption("Select one of the action above: ", 1, 4);
 			while (option == 1) {
 				int listOption = -1;
-				System.out.println("\n===============Double Linked List===============");
-				System.out.println("[1] Add a value\n"
+				println.accept("\n===============Double Linked List===============");
+				println.accept("[1] Add a value\n"
 						+ "[2] Remove a value\n"
 						+ "[3] Search for a value\n"
 						+ "[4] Get a value\n"
@@ -31,10 +37,12 @@ public class mainMenu {
 					double value = menuMethods.chooseValue("Type a value to add in the list: ");
 					list.add(value);
 				} else if (listOption == 2) {
-					int index = menuMethods.chooseOption("Type the index of a value to remove it of the list: ", 0, list.getSize()-1);
+					int index = menuMethods.chooseOption("Type the index of a value to remove it of the list: "
+							,0
+							,list.getSize()-1);
 					try {
 						if (list.remove(index) == true) {
-							System.out.println("Value of the index " + index + " was removed");
+							println.accept("Value of the index " + index + " was removed");
 						}
 					} catch (IndexOutOfRangeException | DataElementDoesntExistException | EmptyListException e) {
 						e.printStackTrace();
@@ -47,9 +55,11 @@ public class mainMenu {
 						e.printStackTrace();
 					}
 				} else if (listOption == 4) {
-					int index = menuMethods.chooseOption("Type the index of a value to remove it of the list: ", 0, list.getSize()-1);
+					int index = menuMethods.chooseOption("Type the index of a value to remove it of the list: "
+							,0
+							,list.getSize()-1);
 					try {
-						System.out.println("The value of index " + index + " in this list is: " + list.get(index));
+						println.accept("The value of index " + index + " in this list is: " + list.get(index));
 					} catch (EmptyListException | IndexOutOfRangeException e) {
 						e.printStackTrace();
 					}
@@ -61,8 +71,8 @@ public class mainMenu {
 			}
 			while (option == 2) {
 				int queueOption = -1;
-				System.out.println("\n===============Queue===============");
-				System.out.println("[1] Add a value\n"
+				println.accept("\n===============Queue===============");
+				println.accept("[1] Add a value\n"
 						+ "[2] Remove a value\n"
 						+ "[3] Search for a value\n"
 						+ "[4] Get a value\n"
@@ -74,9 +84,9 @@ public class mainMenu {
 					queue.add(value);
 				} else if (queueOption == 2) {
 					if (queue.remove() == true) {
-						System.out.println("The first value of the queue was removed");
+						println.accept("The first value of the queue was removed");
 					} else {
-						System.out.println("The queue is empty, try again with elements on it!");
+						println.accept("The queue is empty, try again with elements on it!");
 					}
 				} else if (queueOption == 3) {
 					double searchedValue = menuMethods.chooseValue("Type a value to try to find it in the queue: ");
@@ -87,7 +97,7 @@ public class mainMenu {
 					}
 				} else if (queueOption == 4) {
 					try {
-						System.out.println("The first value of the queue is: " + queue.get());
+						println.accept("The first value of the queue is: " + queue.get());
 					} catch (EmptyListException e) {
 						e.printStackTrace();
 					}
@@ -99,8 +109,8 @@ public class mainMenu {
 			}
 			while (option == 3) {
 				int stackOption = -1;
-				System.out.println("\n===============Stack===============");
-				System.out.println("[1] Add a value\n"
+				println.accept("\n===============Stack===============");
+				println.accept("[1] Add a value\n"
 						+ "[2] Remove a value\n"
 						+ "[3] Search for a value\n"
 						+ "[4] Get a value\n"
@@ -112,9 +122,9 @@ public class mainMenu {
 					stack.add(value);
 				} else if (stackOption == 2) {
 					if (stack.remove() == true) {
-						System.out.println("The first value of the stack was removed");
+						println.accept("The first value of the stack was removed");
 					} else {
-						System.out.println("The stack is empty, try again with elements on it!");
+						println.accept("The stack is empty, try again with elements on it!");
 					}
 				} else if (stackOption == 3) {
 					double searchedValue = menuMethods.chooseValue("Type a value to try to find it in the stack: ");
@@ -125,7 +135,7 @@ public class mainMenu {
 					}
 				} else if (stackOption == 4) {
 					try {
-						System.out.println("The first value of the stack is: " + stack.get());
+						println.accept("The first value of the stack is: " + stack.get());
 					} catch (EmptyListException e) {
 						e.printStackTrace();
 					}

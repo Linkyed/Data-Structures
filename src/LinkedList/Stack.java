@@ -1,8 +1,9 @@
 package LinkedList;
 
 import Errors.EmptyListException;
+import Utility.UsefulFunctions;
 
-public class Stack {
+public class Stack extends UsefulFunctions{
 	DataElement firstElement = null;
 	DataElement lastElement = null;
 	double size = 0;
@@ -24,7 +25,7 @@ public class Stack {
 		if (isEmpty()) {
 			return false;
 		} else {
-			if (firstElement.next == null) {
+			if (isNull.test(firstElement.next)) {
 				firstElement = null;
 			} else {
 				DataElement aux = firstElement;
@@ -48,14 +49,14 @@ public class Stack {
 		if (!isEmpty()) {
 			DataElement aux = firstElement;
 			int position = 1;
-			while (aux.next != null && aux.value != value) {
+			while (isNotNull.test(aux.next) && aux.value != value) {
 				aux = aux.next;
 				position++;
 			}
 			if (aux.value == value) {
-				System.out.println("The data element " + value + " is the " + position + "º in the stack");				
+				println.accept("The data element " + value + " is the " + position + "º in the stack");				
 			} else {
-				System.out.println("There is no data element with the value " + value + " in this stack");		
+				println.accept("There is no data element with the value " + value + " in this stack");		
 			}
 
 		}
@@ -67,16 +68,18 @@ public class Stack {
 	public void printStack() {
 		if (!isEmpty()) {
 			DataElement aux = firstElement;
-			while(aux.next != null) {
-				System.out.print(aux.value + "->");
+			while(isNotNull.test(aux.next)) {
+				print.accept(aux.value + "->");
 				aux = aux.next;
 			}
-			System.out.println(aux.value);			
+			println.accept(aux.value);			
+		} else {
+			println.accept("\nThis stack is empty!\n");
 		}
 	}
 	
 	public boolean isEmpty() {
-		if (firstElement == null) {
+		if (isNull.test(firstElement)) {
 			return true;
 		}
 		return false;

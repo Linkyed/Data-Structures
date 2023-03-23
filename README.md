@@ -19,4 +19,9 @@ I changed the linked list too, because I was using the double linked list and I 
 
 At the end I created a simple menu to create all the DS that I already implemented and test them, for now you can create a list, queue and stack, and in all of 3 you can add, remove, find, get and show all the elements, just follow the available options in the main menu.
 
+## Day 3
+Today I refactored the code, I learned some useful things in java like lambda expressions, and i thought that it would be improved my actual code.
 
+Basically i create a new class to store some lambda expressions like, isNull, isNotNull, getUserInput and etc. With this i can use this small functions to change and improve things in the code, and combining them i can create more complex functions that can solve more specific problems
+
+I change almost all the codes with this new functions and now the code is more readable, next time i gonna continue with the DS implementation

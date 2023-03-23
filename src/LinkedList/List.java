@@ -3,8 +3,9 @@ package LinkedList;
 import Errors.DataElementDoesntExistException;
 import Errors.EmptyListException;
 import Errors.IndexOutOfRangeException;
+import Utility.UsefulFunctions;
 
-public class List {
+public class List extends UsefulFunctions{
 	DoubleLinkedDE firstElement = null;
 	DoubleLinkedDE lastElement = null;
 	int size = 0;
@@ -25,7 +26,7 @@ public class List {
 	public boolean remove(int index) throws IndexOutOfRangeException, DataElementDoesntExistException, EmptyListException {
 		if (!isEmpty()) {			
 			DoubleLinkedDE aux = firstElement;
-			if (index < size && index >= 0) {
+			if (isInRange(index, 0, size-1)) {
 				for (int i = 0; i < index; i++) {
 					aux = aux.next;
 				}			
@@ -54,14 +55,14 @@ public class List {
 		if (!isEmpty()) {
 			DoubleLinkedDE aux = firstElement;
 			int index = 0;
-			while(aux.next != null && aux.value != value) {
+			while(isNotNull.test(aux.next) && aux.value != value) {
 				aux = aux.next;
 				index++;
 			}			
 			if (aux.value == value) {
-				System.out.println("The data element " + value + " is on the index " + index);				
+				println.accept("The data element " + value + " is on the index " + index);				
 			} else {
-				System.out.println("There is no element with value " + value + " in this list");
+				println.accept("There is no element with value " + value + " in this list");
 			}
 		}
 		else {
@@ -72,7 +73,7 @@ public class List {
 	public double get(int index) throws EmptyListException, IndexOutOfRangeException {
 		if (!isEmpty()) {			
 			DoubleLinkedDE aux = firstElement;
-			if (index <= size && index >= 0) {
+			if (isInRange(index, 0, size-1)) {
 				for (int i = 0; i < index; i++) {
 					aux = aux.next;
 				}			
@@ -81,19 +82,19 @@ public class List {
 		} else {
 			throw new EmptyListException();
 		}
-		throw new IndexOutOfRangeException("teste");
+		throw new IndexOutOfRangeException();
 	}
 	
 	public void printList() {
 		if (!isEmpty()) {
 			DoubleLinkedDE aux = firstElement;
-			while(aux.next != null) {
-				System.out.print(aux.value + "->");
+			while(isNotNull.test(aux.next)) {
+				print.accept(aux.value + "->");
 				aux = aux.next;
 			}
-			System.out.println(aux.value);			
+			println.accept(aux.value);			
 		} else {
-			System.out.println("\nThis list is empty!\n");
+			println.accept("\nThis list is empty!\n");
 		}
 	}
 	
@@ -102,7 +103,7 @@ public class List {
 	}
 	
 	public boolean isEmpty() {
-		if (firstElement == null) {
+		if (isNull.test(firstElement)) {
 			return true;
 		}
 		return false;

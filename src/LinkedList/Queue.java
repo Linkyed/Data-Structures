@@ -1,8 +1,9 @@
 package LinkedList;
 
 import Errors.EmptyListException;
+import Utility.UsefulFunctions;
 
-public class Queue{
+public class Queue extends UsefulFunctions{
 	DataElement firstElement = null;
 	DataElement lastElement = null;
 	double size = 0;
@@ -25,7 +26,7 @@ public class Queue{
 		if (isEmpty()) {
 			return false;
 		} else {
-			if (firstElement.next == null) {
+			if (isNull.test(firstElement.next)) {
 				firstElement = null;
 			} else {
 				DataElement aux = firstElement;
@@ -50,14 +51,14 @@ public class Queue{
 		if (!isEmpty()) {
 			DataElement aux = firstElement;
 			int position = 1;
-			while (aux.next != null && aux.value != value) {
+			while (isNotNull.test(aux.next) && aux.value != value) {
 				aux = aux.next;
 				position++;
 			}
 			if (aux.value == value) {
-				System.out.println("The data element " + value + " is the " + position + "º in the queue");				
+				println.accept("The data element " + value + " is the " + position + "º in the queue");				
 			} else {
-				System.out.println("There is no data element with the value " + value + " in this queue");		
+				println.accept("There is no data element with the value " + value + " in this queue");		
 			}
 
 		}
@@ -69,16 +70,18 @@ public class Queue{
 	public void printQueue() {
 		if (!isEmpty()) {
 			DataElement aux = firstElement;
-			while(aux.next != null) {
-				System.out.print(aux.value + "->");
+			while(isNotNull.test(aux.next)) {
+				print.accept(aux.value + "->");
 				aux = aux.next;
 			}
-			System.out.println(aux.value);			
+			println.accept(aux.value);			
+		} else {
+			println.accept("\nThis queue is empty!\n");
 		}
 	}
 	
 	public boolean isEmpty() {
-		if (firstElement == null) {
+		if (isNull.test(firstElement)) {
 			return true;
 		}
 		return false;
