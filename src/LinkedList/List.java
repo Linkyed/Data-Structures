@@ -1,7 +1,6 @@
 package LinkedList;
 
-import Errors.DataElementDoesntExistException;
-import Errors.EmptyListException;
+import Errors.EmptyDataStructureException;
 import Errors.IndexOutOfRangeException;
 import Utility.UsefulFunctions;
 
@@ -23,7 +22,7 @@ public class List extends UsefulFunctions{
 		size++;
 	}
 	
-	public boolean remove(int index) throws IndexOutOfRangeException, DataElementDoesntExistException, EmptyListException {
+	public boolean remove(int index) throws IndexOutOfRangeException, EmptyDataStructureException {
 		if (!isEmpty()) {			
 			DoubleLinkedDE aux = firstElement;
 			if (isInRange(index, 0, size-1)) {
@@ -31,9 +30,13 @@ public class List extends UsefulFunctions{
 					aux = aux.next;
 				}			
 				if (aux == firstElement) {
-					firstElement = aux.next;
-					aux.next.previous = null;
-					aux.next = null;
+					try {
+						firstElement = aux.next;
+						aux.next.previous = null;
+						aux.next = null;
+					} catch (NullPointerException e){
+						firstElement = null;
+					}
 				} else if (aux == lastElement) {
 					lastElement = aux.previous;
 					aux.previous.next = null;
@@ -46,12 +49,12 @@ public class List extends UsefulFunctions{
 				return true;
 			}
 		} else { 
-			throw new EmptyListException();
+			throw new EmptyDataStructureException("List");
 		}
-		throw new IndexOutOfRangeException("teste");
+		throw new IndexOutOfRangeException(index);
 	}
 	
-	public void find(double value) throws EmptyListException {
+	public void find(double value) throws EmptyDataStructureException {
 		if (!isEmpty()) {
 			DoubleLinkedDE aux = firstElement;
 			int index = 0;
@@ -66,11 +69,11 @@ public class List extends UsefulFunctions{
 			}
 		}
 		else {
-			throw new EmptyListException();
+			throw new EmptyDataStructureException("List");
 		}
 	}
 	
-	public double get(int index) throws EmptyListException, IndexOutOfRangeException {
+	public double get(int index) throws EmptyDataStructureException, IndexOutOfRangeException {
 		if (!isEmpty()) {			
 			DoubleLinkedDE aux = firstElement;
 			if (isInRange(index, 0, size-1)) {
@@ -80,9 +83,9 @@ public class List extends UsefulFunctions{
 				return aux.value;
 			}
 		} else {
-			throw new EmptyListException();
+			throw new EmptyDataStructureException("List");
 		}
-		throw new IndexOutOfRangeException();
+		throw new IndexOutOfRangeException(index);
 	}
 	
 	public void printList() {

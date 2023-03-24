@@ -1,12 +1,11 @@
 package LinkedList;
 
-import Errors.DataElementDoesntExistException;
-import Errors.EmptyListException;
+import Errors.EmptyDataStructureException;
 import Errors.IndexOutOfRangeException;
 
-public class main {
+public class Test {
 	
-	public static void main(String[] args) throws EmptyListException, IndexOutOfRangeException, DataElementDoesntExistException {
+	public static void main(String[] args) throws EmptyDataStructureException, IndexOutOfRangeException {
 
 		//====================Creating a double linked-list====================
 		System.out.println("=================Double Linked List=================");

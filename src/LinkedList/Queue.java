@@ -1,6 +1,6 @@
 package LinkedList;
 
-import Errors.EmptyListException;
+import Errors.EmptyDataStructureException;
 import Utility.UsefulFunctions;
 
 public class Queue extends UsefulFunctions{
@@ -24,7 +24,7 @@ public class Queue extends UsefulFunctions{
 	
 	public boolean remove() {
 		if (isEmpty()) {
-			return false;
+			throw new EmptyDataStructureException("Queue");
 		} else {
 			if (isNull.test(firstElement.next)) {
 				firstElement = null;
@@ -39,15 +39,15 @@ public class Queue extends UsefulFunctions{
 	}
 	
 	
-	public double get() throws EmptyListException {
+	public double get() throws EmptyDataStructureException {
 		if (!isEmpty()) {
 			return firstElement.value;
 		} else {
-			throw new EmptyListException();
+			throw new EmptyDataStructureException("Queue");
 		}
 	}
 	
-	public void find(double value) throws EmptyListException {
+	public void find(double value) throws EmptyDataStructureException {
 		if (!isEmpty()) {
 			DataElement aux = firstElement;
 			int position = 1;
@@ -63,7 +63,7 @@ public class Queue extends UsefulFunctions{
 
 		}
 		else {
-			throw new EmptyListException();
+			throw new EmptyDataStructureException("Queue");
 		}
 	}
 	

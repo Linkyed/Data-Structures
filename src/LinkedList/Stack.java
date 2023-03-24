@@ -1,6 +1,6 @@
 package LinkedList;
 
-import Errors.EmptyListException;
+import Errors.EmptyDataStructureException;
 import Utility.UsefulFunctions;
 
 public class Stack extends UsefulFunctions{
@@ -23,7 +23,7 @@ public class Stack extends UsefulFunctions{
 	
 	public boolean remove() {
 		if (isEmpty()) {
-			return false;
+			throw new EmptyDataStructureException("Stack");
 		} else {
 			if (isNull.test(firstElement.next)) {
 				firstElement = null;
@@ -37,15 +37,15 @@ public class Stack extends UsefulFunctions{
 		}
 	}
 	
-	public double get() throws EmptyListException {
+	public double get() throws EmptyDataStructureException {
 		if (!isEmpty()) {
 			return firstElement.value;
 		} else {
-			throw new EmptyListException();
+			throw new EmptyDataStructureException("Stack");
 		}
 	}
 	
-	public void find(double value) throws EmptyListException {
+	public void find(double value) throws EmptyDataStructureException {
 		if (!isEmpty()) {
 			DataElement aux = firstElement;
 			int position = 1;
@@ -61,7 +61,7 @@ public class Stack extends UsefulFunctions{
 
 		}
 		else {
-			throw new EmptyListException();
+			throw new EmptyDataStructureException("Stack");
 		}
 	}
 	

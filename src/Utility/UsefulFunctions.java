@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+
 public class UsefulFunctions {
 	
 	static public Consumer<Object> println = obj -> System.out.println(obj);
@@ -27,11 +28,15 @@ public class UsefulFunctions {
 	static public Predicate<Object> isNotNull = obj -> obj != null ? true : false;
 	
 	static public boolean isInRange(double value, double start, double end) {
+		if (start > end ){
+			throw new IllegalArgumentException();
+		}
 		if (value >= start && value <= end) {
 			return true;
 		} 
 		return false;
 	}
+	
 	
 
 	

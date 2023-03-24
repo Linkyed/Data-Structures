@@ -1,28 +1,24 @@
 package MenuTester;
 
-import java.util.function.Consumer;
-
-import Errors.DataElementDoesntExistException;
-import Errors.EmptyListException;
+import Errors.EmptyDataStructureException;
 import Errors.IndexOutOfRangeException;
 import LinkedList.List;
 import LinkedList.Queue;
 import LinkedList.Stack;
 import Utility.UsefulFunctions;
 
-public class mainMenu extends UsefulFunctions{
-	
+public class mainMenu extends UsefulFunctions {
+
 	public static void main(String[] args) {
-		
-		
+
 		int option = -1;
 		List list = new List();
 		Queue queue = new Queue();
 		Stack stack = new Stack();
-		
+
 		while (option != 4) {
 			println.accept("[1] Start a List\n[2] Start a Queue\n[3] Start a Stack\n[4] Exit");
-			option = menuMethods.chooseOption("Select one of the action above: ", 1, 4);
+			option = menuMethods.chooseOptionInRange("Select one of the action above: ", 1, 4);
 			while (option == 1) {
 				int listOption = -1;
 				println.accept("\n===============Double Linked List===============");
@@ -32,36 +28,44 @@ public class mainMenu extends UsefulFunctions{
 						+ "[4] Get a value\n"
 						+ "[5] Print all list\n"
 						+ "[6] Exit list");
-				listOption = menuMethods.chooseOption("Select one of the action above: ", 1, 6);
+				listOption = menuMethods.chooseOptionInRange("Select one of the action above: ", 1, 6);
+
 				if (listOption == 1) {
 					double value = menuMethods.chooseValue("Type a value to add in the list: ");
 					list.add(value);
 				} else if (listOption == 2) {
-					int index = menuMethods.chooseOption("Type the index of a value to remove it of the list: "
-							,0
-							,list.getSize()-1);
+					int index = 0;
 					try {
-						if (list.remove(index) == true) {
-							println.accept("Value of the index " + index + " was removed");
-						}
-					} catch (IndexOutOfRangeException | DataElementDoesntExistException | EmptyListException e) {
-						e.printStackTrace();
-					}
+						index = menuMethods.chooseOption("Type the index of a value to remove it of the list: ");
+						list.remove(index);
+						println.accept("Value of the index " + index + " was removed");
+					} catch (IndexOutOfRangeException e) {
+						println.accept(e.getMessage());
+						println.accept(
+								String.format("Try a index that is in the range '%s' and '%s'", 0, list.getSize()));
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the List");
+					} 
 				} else if (listOption == 3) {
 					double searchedValue = menuMethods.chooseValue("Type a value to try to find it in the list: ");
 					try {
 						list.find(searchedValue);
-					} catch (EmptyListException e) {
-						e.printStackTrace();
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the List");
 					}
 				} else if (listOption == 4) {
-					int index = menuMethods.chooseOption("Type the index of a value to remove it of the list: "
-							,0
-							,list.getSize()-1);
+					int index = menuMethods.chooseOption("Type the index of a value to get it: ");
 					try {
 						println.accept("The value of index " + index + " in this list is: " + list.get(index));
-					} catch (EmptyListException | IndexOutOfRangeException e) {
-						e.printStackTrace();
+					} catch (IndexOutOfRangeException e) {
+						println.accept(e.getMessage());
+						println.accept(
+								String.format("Try a index that is in the range '%s' and '%s'", 0, list.getSize()));
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the List");
 					}
 				} else if (listOption == 5) {
 					list.printList();
@@ -78,28 +82,32 @@ public class mainMenu extends UsefulFunctions{
 						+ "[4] Get a value\n"
 						+ "[5] Print all queue\n"
 						+ "[6] Exit queue");
-				queueOption = menuMethods.chooseOption("Select one of the action above: ", 1, 6);
+				queueOption = menuMethods.chooseOptionInRange("Select one of the action above: ", 1, 6);
 				if (queueOption == 1) {
 					double value = menuMethods.chooseValue("Type a value to add in the queue: ");
 					queue.add(value);
 				} else if (queueOption == 2) {
-					if (queue.remove() == true) {
+					try {
+						queue.remove();
 						println.accept("The first value of the queue was removed");
-					} else {
-						println.accept("The queue is empty, try again with elements on it!");
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the Queue");
 					}
 				} else if (queueOption == 3) {
 					double searchedValue = menuMethods.chooseValue("Type a value to try to find it in the queue: ");
 					try {
 						queue.find(searchedValue);
-					} catch (EmptyListException e) {
-						e.printStackTrace();
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the Queue");
 					}
 				} else if (queueOption == 4) {
 					try {
 						println.accept("The first value of the queue is: " + queue.get());
-					} catch (EmptyListException e) {
-						e.printStackTrace();
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the Queue");
 					}
 				} else if (queueOption == 5) {
 					queue.printQueue();
@@ -116,28 +124,32 @@ public class mainMenu extends UsefulFunctions{
 						+ "[4] Get a value\n"
 						+ "[5] Print all stack\n"
 						+ "[6] Exit stack");
-				stackOption = menuMethods.chooseOption("Select one of the action above: ", 1, 6);
+				stackOption = menuMethods.chooseOptionInRange("Select one of the action above: ", 1, 6);
 				if (stackOption == 1) {
 					double value = menuMethods.chooseValue("Type a value to add in the stack: ");
 					stack.add(value);
 				} else if (stackOption == 2) {
-					if (stack.remove() == true) {
+					try {
+						stack.remove();
 						println.accept("The first value of the stack was removed");
-					} else {
-						println.accept("The stack is empty, try again with elements on it!");
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the Stack");
 					}
 				} else if (stackOption == 3) {
 					double searchedValue = menuMethods.chooseValue("Type a value to try to find it in the stack: ");
 					try {
 						stack.find(searchedValue);
-					} catch (EmptyListException e) {
-						e.printStackTrace();
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the Stack");
 					}
 				} else if (stackOption == 4) {
 					try {
 						println.accept("The first value of the stack is: " + stack.get());
-					} catch (EmptyListException e) {
-						e.printStackTrace();
+					} catch (EmptyDataStructureException e) {
+						println.accept(e.getMessage());
+						println.accept("Try to add elements on the Stack");
 					}
 				} else if (stackOption == 5) {
 					stack.printStack();
@@ -147,5 +159,5 @@ public class mainMenu extends UsefulFunctions{
 			}
 		}
 	}
-	
+
 }
