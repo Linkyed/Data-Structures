@@ -1,12 +1,12 @@
 package LinkedList;
 
-public class DoubleLinkedDE {
-	double value = 0;
-	DoubleLinkedDE next = null;
-	DoubleLinkedDE previous = null;
+public class DoubleLinkedDE<T> {
+	T element;
+	DoubleLinkedDE<T> next = null;
+	DoubleLinkedDE<T> previous = null;
 	
-	public DoubleLinkedDE(double value, DoubleLinkedDE next, DoubleLinkedDE previous) {
-		this.value = value;
+	public DoubleLinkedDE(T element, DoubleLinkedDE<T> next, DoubleLinkedDE<T> previous) {
+		this.element = element;
 		this.next = next;
 		this.previous = previous;
 	}

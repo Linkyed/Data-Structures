@@ -9,7 +9,7 @@ public class Test {
 
 		//====================Creating a double linked-list====================
 		System.out.println("=================Double Linked List=================");
-		List list = new List();
+		List<Integer> list = new List<>();
 
 		//Adding 10 data elements on it
 		for (int i = 1; i <= 10; i++) {
@@ -34,7 +34,7 @@ public class Test {
 		
 		//====================Creating a Queue====================
 		System.out.println("=================Queue=================");
-		Queue queue = new Queue();
+		Queue<Integer> queue = new Queue();
 		
 		//Adding data elements in the queue
 		for (int i = 1; i <= 10; i++) {
@@ -58,7 +58,7 @@ public class Test {
 
 		//====================Creating a Stack====================
 		System.out.println("=================Stack=================");
-		Stack stack = new Stack();
+		Stack<Integer> stack = new Stack<>();
 		
 		for (int i = 1; i <= 10; i++) {
 			stack.add(i);

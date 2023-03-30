@@ -1,11 +1,11 @@
 package LinkedList;
 
-public class DataElement {
-	double value = 0;
-	DataElement next = null;
+public class DataElement<T> {
+	T element;
+	DataElement<T> next = null;
 	
-	public DataElement(double value, DataElement next) {
-		this.value = value;
+	public DataElement(T element, DataElement<T> next) {
+		this.element = element;
 		this.next = next;
 	}
 }

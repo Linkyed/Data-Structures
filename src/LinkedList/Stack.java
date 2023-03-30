@@ -3,19 +3,19 @@ package LinkedList;
 import Errors.EmptyDataStructureException;
 import Utility.UsefulFunctions;
 
-public class Stack extends UsefulFunctions{
-	DataElement firstElement = null;
-	DataElement lastElement = null;
+public class Stack<T> extends UsefulFunctions{
+	DataElement<T> firstElement = null;
+	DataElement<T> lastElement = null;
 	double size = 0;
 	
 	
-	public void add(double value) {
+	public void add(T element) {
 		if (isEmpty()) {
-			DataElement temporary =  new DataElement(value, null);
+			DataElement<T> temporary =  new DataElement<>(element, null);
 			firstElement = temporary;
 			lastElement = temporary;			
 		} else {
-			DataElement temporary = new DataElement(value, firstElement);
+			DataElement<T> temporary = new DataElement<>(element, firstElement);
 			firstElement = temporary;
 		}
 		size++;
@@ -28,7 +28,7 @@ public class Stack extends UsefulFunctions{
 			if (isNull.test(firstElement.next)) {
 				firstElement = null;
 			} else {
-				DataElement aux = firstElement;
+				DataElement<T> aux = firstElement;
 				firstElement = firstElement.next;
 				aux.next = null;
 				size--;
@@ -37,26 +37,26 @@ public class Stack extends UsefulFunctions{
 		}
 	}
 	
-	public double get() throws EmptyDataStructureException {
+	public T get() throws EmptyDataStructureException {
 		if (!isEmpty()) {
-			return firstElement.value;
+			return firstElement.element;
 		} else {
 			throw new EmptyDataStructureException("Stack");
 		}
 	}
 	
-	public void find(double value) throws EmptyDataStructureException {
+	public void find(T element) throws EmptyDataStructureException {
 		if (!isEmpty()) {
-			DataElement aux = firstElement;
+			DataElement<T> aux = firstElement;
 			int position = 1;
-			while (isNotNull.test(aux.next) && aux.value != value) {
+			while (isNotNull.test(aux.next) && !aux.element.equals(element)) {
 				aux = aux.next;
 				position++;
 			}
-			if (aux.value == value) {
-				println.accept("The data element " + value + " is the " + position + "º in the stack");				
+			if (aux.element.equals(element)) {
+				println.accept("The data element " + element + " is the " + position + "º in the stack");				
 			} else {
-				println.accept("There is no data element with the value " + value + " in this stack");		
+				println.accept("There is no data element with the value " + element + " in this stack");		
 			}
 
 		}
@@ -67,12 +67,12 @@ public class Stack extends UsefulFunctions{
 	
 	public void printStack() {
 		if (!isEmpty()) {
-			DataElement aux = firstElement;
+			DataElement<T> aux = firstElement;
 			while(isNotNull.test(aux.next)) {
-				print.accept(aux.value + "->");
+				print.accept(aux.element + "->");
 				aux = aux.next;
 			}
-			println.accept(aux.value);			
+			println.accept(aux.element);			
 		} else {
 			println.accept("\nThis stack is empty!\n");
 		}

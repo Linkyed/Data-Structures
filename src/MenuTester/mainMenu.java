@@ -12,9 +12,9 @@ public class mainMenu extends UsefulFunctions {
 	public static void main(String[] args) {
 
 		int option = -1;
-		List list = new List();
-		Queue queue = new Queue();
-		Stack stack = new Stack();
+		List<Double> list = new List<>();
+		Queue<Double> queue = new Queue<>();
+		Stack<Double> stack = new Stack<>();
 
 		while (option != 4) {
 			println.accept("[1] Start a List\n[2] Start a Queue\n[3] Start a Stack\n[4] Exit");

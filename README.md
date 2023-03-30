@@ -25,3 +25,6 @@ Today I refactored the code, I learned some useful things in java like lambda ex
 Basically i create a new class to store some lambda expressions like, isNull, isNotNull, getUserInput and etc. With this i can use this small functions to change and improve things in the code, and combining them i can create more complex functions that can solve more specific problems
 
 I change almost all the codes with this new functions and now the code is more readable, next time i gonna continue with the DS implementation
+
+## Day 4
+More refactory time, now i applied my recent knowledge with generics in java to make all the DS support different types of data elements in it. Now the list, queue and stack can store, integers, doubles, strings and etc.

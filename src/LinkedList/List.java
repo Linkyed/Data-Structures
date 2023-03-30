@@ -4,18 +4,18 @@ import Errors.EmptyDataStructureException;
 import Errors.IndexOutOfRangeException;
 import Utility.UsefulFunctions;
 
-public class List extends UsefulFunctions{
-	DoubleLinkedDE firstElement = null;
-	DoubleLinkedDE lastElement = null;
+public class List<T> extends UsefulFunctions{
+	DoubleLinkedDE<T> firstElement = null;
+	DoubleLinkedDE<T> lastElement = null;
 	int size = 0;
 	
-	public void add(double value) {
+	public void add(T element) {
 		if (isEmpty()) {
-			DoubleLinkedDE temporary =  new DoubleLinkedDE(value, null, null);
+			DoubleLinkedDE<T> temporary =  new DoubleLinkedDE<>(element, null, null);
 			firstElement = temporary;
 			lastElement = temporary;			
 		} else {
-			DoubleLinkedDE temporary = new DoubleLinkedDE(value, null, lastElement);
+			DoubleLinkedDE<T> temporary = new DoubleLinkedDE<>(element, null, lastElement);
 			lastElement.next = temporary;
 			lastElement = temporary;
 		}
@@ -24,7 +24,7 @@ public class List extends UsefulFunctions{
 	
 	public boolean remove(int index) throws IndexOutOfRangeException, EmptyDataStructureException {
 		if (!isEmpty()) {			
-			DoubleLinkedDE aux = firstElement;
+			DoubleLinkedDE<T> aux = firstElement;
 			if (isInRange(index, 0, size-1)) {
 				for (int i = 0; i < index; i++) {
 					aux = aux.next;
@@ -54,18 +54,18 @@ public class List extends UsefulFunctions{
 		throw new IndexOutOfRangeException(index);
 	}
 	
-	public void find(double value) throws EmptyDataStructureException {
+	public void find(T element) throws EmptyDataStructureException {
 		if (!isEmpty()) {
-			DoubleLinkedDE aux = firstElement;
+			DoubleLinkedDE<T> aux = firstElement;
 			int index = 0;
-			while(isNotNull.test(aux.next) && aux.value != value) {
+			while(isNotNull.test(aux.next) && aux.element != element) {
 				aux = aux.next;
 				index++;
 			}			
-			if (aux.value == value) {
-				println.accept("The data element " + value + " is on the index " + index);				
+			if (aux.element == element) {
+				println.accept("The data element " + element + " is on the index " + index);				
 			} else {
-				println.accept("There is no element with value " + value + " in this list");
+				println.accept("There is no element with value " + element + " in this list");
 			}
 		}
 		else {
@@ -73,14 +73,14 @@ public class List extends UsefulFunctions{
 		}
 	}
 	
-	public double get(int index) throws EmptyDataStructureException, IndexOutOfRangeException {
+	public T get(int index) throws EmptyDataStructureException, IndexOutOfRangeException {
 		if (!isEmpty()) {			
-			DoubleLinkedDE aux = firstElement;
+			DoubleLinkedDE<T> aux = firstElement;
 			if (isInRange(index, 0, size-1)) {
 				for (int i = 0; i < index; i++) {
 					aux = aux.next;
 				}			
-				return aux.value;
+				return aux.element;
 			}
 		} else {
 			throw new EmptyDataStructureException("List");
@@ -90,12 +90,12 @@ public class List extends UsefulFunctions{
 	
 	public void printList() {
 		if (!isEmpty()) {
-			DoubleLinkedDE aux = firstElement;
+			DoubleLinkedDE<T> aux = firstElement;
 			while(isNotNull.test(aux.next)) {
-				print.accept(aux.value + "->");
+				print.accept(aux.element + "->");
 				aux = aux.next;
 			}
-			println.accept(aux.value);			
+			println.accept(aux.element);			
 		} else {
 			println.accept("\nThis list is empty!\n");
 		}
