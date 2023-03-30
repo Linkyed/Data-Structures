@@ -1,7 +1,11 @@
-package LinkedList;
+package linkedList;
 
-import Errors.EmptyDataStructureException;
-import Errors.IndexOutOfRangeException;
+import java.util.Collections;
+
+import exceptions.EmptyDataStructureException;
+import exceptions.IndexOutOfRangeException;
+import trees.BinaryTree;
+import trees.TreeNode;
 
 public class Test {
 	
@@ -79,5 +83,19 @@ public class Test {
 		//Trying to find a element with a given value and it position on the stack
 		stack.find(7);
 		
+		//====================Creating a Binary Tree====================
+		BinaryTree<Integer> binaryTree = new BinaryTree<>();
+		
+		//Just some tests
+		binaryTree.add(1);
+		binaryTree.add(2);
+		binaryTree.add(3);
+		binaryTree.add(10);
+		binaryTree.add(8);
+		binaryTree.add(-1);
+		
+		//Printing the Tree
+		binaryTree.showBinaryTree();
+	
 	}
 }

@@ -1,11 +1,11 @@
-package MenuTester;
+package menu;
 
-import Errors.EmptyDataStructureException;
-import Errors.IndexOutOfRangeException;
-import LinkedList.List;
-import LinkedList.Queue;
-import LinkedList.Stack;
-import Utility.UsefulFunctions;
+import exceptions.EmptyDataStructureException;
+import exceptions.IndexOutOfRangeException;
+import linkedList.List;
+import linkedList.Queue;
+import linkedList.Stack;
+import utility.UsefulFunctions;
 
 public class mainMenu extends UsefulFunctions {
 

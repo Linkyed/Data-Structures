@@ -1,4 +1,4 @@
-package Errors;
+package exceptions;
 
 public class EmptyDataStructureException extends RuntimeException{
 

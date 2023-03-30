@@ -1,4 +1,4 @@
-package Errors;
+package exceptions;
 
 public class IndexOutOfRangeException extends RuntimeException{
 	int chosenValue = 0;

@@ -1,9 +1,9 @@
-package LinkedList;
+package linkedList;
 
-import Errors.EmptyDataStructureException;
-import Utility.UsefulFunctions;
+import exceptions.EmptyDataStructureException;
+import utility.UsefulFunctions;
 
-public class Stack<T> extends UsefulFunctions{
+public class Queue<T> extends UsefulFunctions{
 	DataElement<T> firstElement = null;
 	DataElement<T> lastElement = null;
 	double size = 0;
@@ -15,15 +15,16 @@ public class Stack<T> extends UsefulFunctions{
 			firstElement = temporary;
 			lastElement = temporary;			
 		} else {
-			DataElement<T> temporary = new DataElement<>(element, firstElement);
-			firstElement = temporary;
+			DataElement<T> temporary = new DataElement<>(element, null);
+			lastElement.next = temporary;
+			lastElement = temporary;
 		}
 		size++;
 	}
 	
 	public boolean remove() {
 		if (isEmpty()) {
-			throw new EmptyDataStructureException("Stack");
+			throw new EmptyDataStructureException("Queue");
 		} else {
 			if (isNull.test(firstElement.next)) {
 				firstElement = null;
@@ -37,11 +38,12 @@ public class Stack<T> extends UsefulFunctions{
 		}
 	}
 	
+	
 	public T get() throws EmptyDataStructureException {
 		if (!isEmpty()) {
 			return firstElement.element;
 		} else {
-			throw new EmptyDataStructureException("Stack");
+			throw new EmptyDataStructureException("Queue");
 		}
 	}
 	
@@ -54,18 +56,18 @@ public class Stack<T> extends UsefulFunctions{
 				position++;
 			}
 			if (aux.element.equals(element)) {
-				println.accept("The data element " + element + " is the " + position + "º in the stack");				
+				println.accept("The data element '" + element + "' is the " + position + "º in the queue");				
 			} else {
-				println.accept("There is no data element with the value " + element + " in this stack");		
+				println.accept("There is no data element with the value '" + element + "' in this queue");		
 			}
 
 		}
 		else {
-			throw new EmptyDataStructureException("Stack");
+			throw new EmptyDataStructureException("Queue");
 		}
 	}
 	
-	public void printStack() {
+	public void printQueue() {
 		if (!isEmpty()) {
 			DataElement<T> aux = firstElement;
 			while(isNotNull.test(aux.next)) {
@@ -74,7 +76,7 @@ public class Stack<T> extends UsefulFunctions{
 			}
 			println.accept(aux.element);			
 		} else {
-			println.accept("\nThis stack is empty!\n");
+			println.accept("\nThis queue is empty!\n");
 		}
 	}
 	

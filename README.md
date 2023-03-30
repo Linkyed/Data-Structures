@@ -28,3 +28,5 @@ I change almost all the codes with this new functions and now the code is more r
 
 ## Day 4
 More refactory time, now i applied my recent knowledge with generics in java to make all the DS support different types of data elements in it. Now the list, queue and stack can store, integers, doubles, strings and etc.
+
+Now i started to implement the Binary Tree, for now it has two methods, add a new element in the tree and show itself. I decided to use recursion with these methods because i thought it's more easy to implement like this, trees in general it's better to implement using recursion my professor said and trying to implement it now i agree with her.

@@ -1,8 +1,8 @@
-package MenuTester;
+package menu;
 
 import java.util.Scanner;
 
-import Utility.UsefulFunctions;
+import utility.UsefulFunctions;
 
 public class menuMethods extends UsefulFunctions{
 	static Scanner userChoice = new Scanner(System.in);	

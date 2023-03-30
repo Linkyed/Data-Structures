@@ -1,8 +1,8 @@
-package LinkedList;
+package linkedList;
 
-import Errors.EmptyDataStructureException;
-import Errors.IndexOutOfRangeException;
-import Utility.UsefulFunctions;
+import exceptions.EmptyDataStructureException;
+import exceptions.IndexOutOfRangeException;
+import utility.UsefulFunctions;
 
 public class List<T> extends UsefulFunctions{
 	DoubleLinkedDE<T> firstElement = null;
